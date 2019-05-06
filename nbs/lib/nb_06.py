@@ -4,6 +4,8 @@
 #################################################
 # file to edit: dev_nb/06_awd_lstm.ipynb
 
+import warnings
+
 from lib.nb_05 import *
 
 def dropout_mask(x, sz, p):
