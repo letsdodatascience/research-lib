@@ -188,6 +188,17 @@ def lm_databunchify(sd, bs, bptt, **kwargs):
 
 from torch.utils.data import Sampler
 
+class SortSampler(Sampler):
+
+    def __init__(self, data_source, key):
+        self.data_source, self.key = data_source, key
+
+    def __len__(self):
+        return len(self.data_source)
+
+    def __iter__(self):
+        return iter(sorted(list(range(len(self.data_source))), key=self.key, reverse=True))
+
 class SortishSampler(Sampler):
     def __init__(self, data_source, key, bs):
         self.data_source,self.key,self.bs = data_source,key,bs
